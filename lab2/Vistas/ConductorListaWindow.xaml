@@ -1,0 +1,56 @@
+<Window x:Class="lab2.Vistas.ConductorListaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mantenimiento - Lista de Conductores" Height="500" Width="800"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource BrushFondo}">
+    <DockPanel>
+
+        <Border DockPanel.Dock="Top" Background="{StaticResource BrushPrimario}" Height="50">
+            <TextBlock Text="Lista de Conductores" Style="{StaticResource TituloVentana}"/>
+        </Border>
+
+        <Border DockPanel.Dock="Bottom" Background="White" BorderBrush="{StaticResource BrushBorde}"
+                BorderThickness="0,1,0,0" Padding="16,10">
+            <Grid>
+                <TextBlock x:Name="lblTotal" VerticalAlignment="Center" Foreground="{StaticResource BrushTexto}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Eliminar" Style="{StaticResource BotonSecundario}" Click="btnEliminar_Click"/>
+                    <Button Content="Cerrar"   Style="{StaticResource BotonPrimario}"   Click="btnCerrar_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="White" CornerRadius="6" Padding="12"
+                    BorderBrush="{StaticResource BrushBorde}" BorderThickness="1" Margin="0,0,0,12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" MinWidth="150"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Buscar:" Style="{StaticResource Etiqueta}"/>
+                    <TextBox   Grid.Column="1" x:Name="txtBuscar" TextChanged="txtBuscar_TextChanged"
+                              ToolTip="Filtra por nombre, licencia o transporte"/>
+                    <Button    Grid.Column="2" Content="Limpiar" Style="{StaticResource BotonSecundario}"
+                              Click="btnLimpiar_Click" Margin="10,0,0,0"/>
+                </Grid>
+            </Border>
+
+            <DataGrid Grid.Row="1" x:Name="dgConductores">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="N."               Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Nombre Conductor" Binding="{Binding Nombre}" Width="*" MinWidth="150"/>
+                    <DataGridTextColumn Header="Licencia"         Binding="{Binding Licencia}" Width="150"/>
+                    <DataGridTextColumn Header="Transporte"       Binding="{Binding Transporte}" Width="*" MinWidth="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</Window>
